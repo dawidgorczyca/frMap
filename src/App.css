@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+}
+
+.NodeComponent, .NodeContainer {
+  box-sizing: border-box;
+  padding: 20px;
+  margin: 10px;
+  border: 2px solid royalblue;
+}
