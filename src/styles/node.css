@@ -1,0 +1,34 @@
+.NodesContainer {
+  max-width: 70%;
+  margin: 0px auto; }
+
+.NodeComponent {
+  border: 2px solid #503e6b;
+  background-color: rgba(68, 53, 91, 0.2);
+  margin: 10px;
+  padding: 10px;
+  box-sizing: border-box; }
+  .NodeComponent:hover {
+    border-color: #745b9b; }
+  .NodeComponent h3 {
+    font-size: 18px;
+    color: #ECA72C;
+    font-family: 'robotobold';
+    margin: 0 0 10px;
+    padding: 0px; }
+  .NodeComponent .NodeComponent__content {
+    display: flex; }
+  .NodeComponent .NodeComponent__details {
+    list-style: none;
+    flex: 1 0 auto;
+    max-width: 60%;
+    margin: 0px;
+    padding: 0px; }
+    .NodeComponent .NodeComponent__details li {
+      margin-bottom: 10px; }
+  .NodeComponent .NodeComponent__description {
+    flex: 1 0 auto;
+    max-width: 38%;
+    margin-left: 2%;
+    font-size: 14px;
+    line-height: 18px; }

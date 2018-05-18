@@ -1,0 +1,46 @@
+@import 'colors.scss';
+
+.NodesContainer {
+  max-width: 70%;
+  margin: 0px auto;
+}
+.NodeComponent {
+  border: 2px solid lighten($semiDark, 5%);
+  background-color: transparentize($semiDark, 0.8);
+  margin: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+
+  &:hover {
+    border-color: lighten($semiDark, 20%);
+  }
+
+  h3 {
+    font-size: 18px;
+    color: $light;
+    font-family: 'robotobold';
+    margin: 0 0 10px;
+    padding: 0px;
+  }
+  .NodeComponent__content {
+    display: flex;
+  }
+  .NodeComponent__details {
+    list-style: none;
+    flex: 1 0 auto;
+    max-width: 60%;
+    margin: 0px;
+    padding: 0px;
+
+    li {
+      margin-bottom: 10px;
+    }
+  }
+  .NodeComponent__description {
+    flex: 1 0 auto;
+    max-width: 38%;
+    margin-left: 2%;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}

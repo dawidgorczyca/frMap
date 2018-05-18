@@ -1,5 +1,4 @@
 import { store } from './../store/store'
-import AppInstance from './instances'
 import { nodeActionCreators } from './../store/actions/node'
 
 const uuidv4 = require('uuid/v4')

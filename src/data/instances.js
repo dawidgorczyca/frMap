@@ -1,11 +1,11 @@
 import * as definitions from './definitions';
 
 // Topbar
-const SettingsInstance = {
+export const SettingsInstance = {
   ...definitions.SettingsComponent
 }
 
-const TopbarInstance = {
+export const TopbarInstance = {
   ...definitions.TopbarComponent,
   children: [
     {
@@ -26,15 +26,15 @@ const TopbarInstance = {
 }
 
 // Sidebar
-const UserMenuInstance = {
+export const UserMenuInstance = {
   ...definitions.UserMenuComponent
 }
 
-const NavigationMenuInstance = {
+export const NavigationMenuInstance = {
   ...definitions.NavigationMenuComponent
 }
 
-const SidebarInstance = {
+export const SidebarInstance = {
   ...definitions.SidebarComponent,
   children: [
     UserMenuInstance,
@@ -49,7 +49,7 @@ const SidebarInstance = {
 }
 
 // Sections
-const LeftSideInstance = {
+export const LeftSideInstance = {
   ...definitions.SlidingPanelComponent,
   children: [
     {
@@ -72,7 +72,7 @@ const LeftSideInstance = {
   ]
 }
 
-const TopologyViewInstance = {
+export const TopologyViewInstance = {
   ...definitions.TopologyViewComponent,
   children: [
     {
@@ -90,7 +90,7 @@ const TopologyViewInstance = {
 }
 
 // Main Containers
-const ContentBaseInstance = {
+export const ContentBaseInstance = {
   ...definitions.ContentBaseComponent,
   children: [
     TopologyViewInstance,
@@ -98,14 +98,14 @@ const ContentBaseInstance = {
   ]
 }
 
-const AuthorizedComponentInstance = {
+export const AuthorizedComponentInstance = {
   ...definitions.AuthorizedComponent,
   children: [
     SidebarInstance, TopbarInstance, ContentBaseInstance
   ]
 }
 
-const AppInstance = {
+export const AppInstance = {
   ...definitions.AppComponent,
   children: [
     AuthorizedComponentInstance

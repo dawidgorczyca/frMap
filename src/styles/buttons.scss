@@ -1,0 +1,41 @@
+@import 'colors.scss';
+.btn {
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 6px 15px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-right: 4px;
+}
+.btn--primary {
+  background-color: $semiLight;
+
+  &:hover {
+    background-color: lighten($semiLight, 5%);
+  }
+  &:active {
+    background-color: darken($semiLight, 10%);
+  }
+}
+.btn--secondary {
+  background-color: lighten($semiDark, 15%);
+
+  &:hover {
+    background-color: lighten($semiDark, 20%);
+  }
+  &:active {
+    background-color: $semiDark;
+  }
+}
+.btn--bordered {
+  border: 1px solid lighten($semiDark, 15%);
+
+  &:hover {
+    border-color: lighten($semiDark, 30%);
+  }
+  &:active {
+    border-color: $semiDark;
+  }
+}
