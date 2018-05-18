@@ -16,11 +16,10 @@ class DefinitionsContainer extends Component {
 
   handleDefinitionChange(event) {
     const { editDefinition } = this.props.actions
-    editDefinition(
-      event.target.name,
-      event.target.value,
-      event.target.getAttribute('definition_id')
-    )
+    const { target } = event
+    const id = target.getAttribute('definition_id')
+    const { name, value } = target
+    editDefinition(name, value, id)
   }
 
   renderDefinitions() {

@@ -1,5 +1,3 @@
-import AppInstance from './../../data/instances'
-import {structureFactory} from './../../data/generator'
 import {definitionsActionNames} from './../actions/definitions'
 import {definitionsActionCreators} from './../actions/definitions'
 
