@@ -1,330 +1,229 @@
-import * as definitions from './definitions';
+import * as definitions from "./definitions";
 
-export const SpinnerInstance = {
-  ...definitions.Spinner
-}
-
-export const MenuInstance = {
-  ...definitions.MenuComponent
-}
-
-export const UserMenuInstance = {
-  ...definitions.UserMenuComponent
-}
-
-export const WebviewElementInstance = {
-  ...definitions.WebviewElement
-}
-
-export const ButtonInstance = {
-  ...definitions.Button
-}
-
-export const SettingsInstance = {
+const SettingsInstance = {
   ...definitions.SettingsComponent
-}
+};
 
-export const SimpleDottedProgressInstance = {
-  ...definitions.SimpleDottedProgress
-}
-
-export const ListItemBackgroundInstance = {
-  ...definitions.ListItemBackground
-}
-
-export const SimpleListHeaderInstance = {
-  ...definitions.SimpleListHeader
-}
-
-export const NoResultsViewInstance = {
-  ...definitions.NoResultsView
-}
-
-export const CheckboxButtonInstance = {
-  ...definitions.CheckboxButton
-}
-
-export const NetworkRangeInputInstance = {
-  ...definitions.NetworkRangeInput
-}
-
-export const GoJSComponentInstance = {
-  ...definitions.GoJSComponent
-}
-
-export const WithAuthorization = {
-  ...definitions.WithAuthorization
-}
-
-export const HiddenComponentAuthorization = {
+const HiddenComponentAuthorization = {
   ...definitions.HiddenComponentAuthorization,
-  children: [
-    WithAuthorization
-  ]
-}
+  children: [{ ...definitions.WithAuthorization }]
+};
 
-export const FlatButtonInstance = {
+const FlatButtonInstance = {
   ...definitions.FlatButton,
-  children: [
-    HiddenComponentAuthorization
-  ]
-}
+  children: [HiddenComponentAuthorization]
+};
 
-export const ZoomElementInstance = {
+const ZoomElementInstance = {
   ...definitions.ZoomElementComponent,
-  children: [
-    FlatButtonInstance
-  ]
-}
+  children: [FlatButtonInstance]
+};
 
-export const TopologyEditorInstance = {
+const TopologyEditorInstance = {
   ...definitions.TopologyEditorComponent,
-  children: [
-    ZoomElementInstance,
-    GoJSComponentInstance
-  ]
-}
+  children: [ZoomElementInstance, { ...definitions.GoJSComponent }]
+};
 
-export const DevicesListInstance = {
+const DevicesListInstance = {
   ...definitions.DevicesList,
   children: [
-    SimpleDottedProgressInstance,
-    CheckboxButtonInstance,
-    SimpleListHeaderInstance,
-    ListItemBackgroundInstance,
-    NoResultsViewInstance,
+    { ...definitions.SimpleDottedProgress },
+    { ...definitions.CheckboxButton },
+    { ...definitions.SimpleListHeader },
+    { ...definitions.ListItemBackground },
+    { ...definitions.NoResultsView }
   ]
-}
+};
 
-
-
-export const DropdownInstance = {
+const DropdownInstance = {
   ...definitions.DropdownComponent,
-  children: [
-    { ...definitions.OutsideAlerter },
-  ],
-}
+  children: [{ ...definitions.OutsideAlerter }]
+};
 
-export const DevicesScanManagerInstance = {
+const DevicesScanManagerInstance = {
   ...definitions.DevicesScanManager,
   children: [
-    SimpleDottedProgressInstance,
-    SpinnerInstance,
+    { ...definitions.SimpleDottedProgress },
+    { ...definitions.Spinner },
     DevicesListInstance,
-    ButtonInstance,
-    SimpleListHeaderInstance
+    { ...definitions.Button },
+    { ...definitions.SimpleListHeader }
   ]
-}
+};
 
-export const SingleInterfaceListInstance = {
+const SingleInterfaceListInstance = {
   ...definitions.SingleInterfaceList,
   children: [
-    CheckboxButtonInstance,
-    ButtonInstance,
-    NetworkRangeInputInstance,
-    SimpleListHeaderInstance
+    { ...definitions.CheckboxButton },
+    { ...definitions.Button },
+    { ...definitions.NetworkRangeInput },
+    { ...definitions.SimpleListHeader }
   ]
-}
+};
 
-export const InterfacesListInstance = {
+const InterfacesListInstance = {
   ...definitions.InterfacesList,
-  children: [
-    NoResultsViewInstance,
-    SingleInterfaceListInstance
-  ]
-}
+  children: [{ ...definitions.NoResultsView }, SingleInterfaceListInstance]
+};
 
-export const InterfacesScanManagerInstance = {
+const InterfacesScanManagerInstance = {
   ...definitions.InterfacesScanManager,
-  children: [
-    InterfacesListInstance,
-    ButtonInstance
-  ]
-}
+  children: [InterfacesListInstance, { ...definitions.Button }]
+};
 
-export const ScanManagerInstance = {
+const ScanManagerInstance = {
   ...definitions.ScanManager,
-  children: [
-    DevicesScanManagerInstance,
-    InterfacesScanManagerInstance
-  ]
-}
+  children: [DevicesScanManagerInstance, InterfacesScanManagerInstance]
+};
 
-export const TopbarInstance = {
+const TopbarInstance = {
   ...definitions.TopbarComponent,
   children: [
-    MenuInstance,
+    { ...definitions.MenuComponent },
     DropdownInstance,
     ScanManagerInstance
   ]
-}
+};
 
-export const ModalLogInstance = {
+const ModalLogInstance = {
   ...definitions.ModalLog,
-  children: [
-    ButtonInstance
-  ]
-}
+  children: [{ ...definitions.Button }]
+};
 
-export const NavigationMenuInstance = {
+const NavigationMenuInstance = {
   ...definitions.NavigationMenuComponent,
-  children: [
-    ModalLogInstance,
-    WebviewElementInstance
-  ]
-}
+  children: [ModalLogInstance, { ...definitions.WebviewElement }]
+};
 
-export const SidebarInstance = {
+const SidebarInstance = {
   ...definitions.SidebarComponent,
   children: [
-    UserMenuInstance,
-    MenuInstance,
+    { ...definitions.UserMenuComponent },
+    { ...definitions.MenuComponent },
     DropdownInstance,
     NavigationMenuInstance
   ]
-}
+};
 
 // Sections
-export const TabularDevicesInstance = {
-  ...definitions.TabularViewDevices
-}
-
-export const TabularConnectionsInstance = {
-  ...definitions.TabularViewConnections
-}
-
-export const MasterConfigurationFormInstance = {
-  ...definitions.MasterConfigurationForm,
-  children: [
-    { ...definitions.BasicInputComponent }
-  ]
-}
-
-export const DeviceSummaryInstance = {
-  ...definitions.DeviceSummary,
+const TabularDevicesInstance = {
+  ...definitions.TabularViewDevices,
   children: [
     { ...definitions.DeviceStatus },
-    MasterConfigurationFormInstance
+    { ...definitions.NoResultsView },
+    { ...definitions.TabularHeader }
   ]
-}
+};
 
-export const ConnectionInfoInstance = {
+const TabularConnectionsInstance = {
+  ...definitions.TabularViewConnections,
+  children: [{ ...definitions.NoResultsView }, { ...definitions.TabularHeader }]
+};
+
+const MasterConfigurationFormInstance = {
+  ...definitions.MasterConfigurationForm,
+  children: [{ ...definitions.BasicInputComponent }]
+};
+
+const DeviceSummaryInstance = {
+  ...definitions.DeviceSummary,
+  children: [{ ...definitions.DeviceStatus }, MasterConfigurationFormInstance]
+};
+
+const ConnectionInfoInstance = {
   ...definitions.ConnectionInfo,
   children: [
     { ...definitions.BasicInputComponent },
-    { ...definitions.ValidationComponent },
+    { ...definitions.ValidationComponent }
   ]
-}
+};
 
-export const TextAreaInstance = {
+const TextAreaInstance = {
   ...definitions.TextArea,
-  children: [
-    { ...definitions.DisableAuthorization }
-  ]
-}
+  children: [{ ...definitions.DisableAuthorization }]
+};
 
-
-export const GenericTcpIpFormInstance = {
+const GenericTcpIpFormInstance = {
   ...definitions.GenericTcpIpForm,
   children: [
     TextAreaInstance,
     { ...definitions.Form },
     { ...definitions.FormFieldsGroup },
-    { ...definitions.CommonFormSection },
+    { ...definitions.CommonFormSection }
   ]
-}
+};
 
-export const RaisedButtonInstance = {
+const RaisedButtonInstance = {
   ...definitions.RaisedButton,
-  children: [
-    { ...definitions.Tooltip },
-    { ...definitions.OverlayTrigger }
-  ]
-}
+  children: [{ ...definitions.Tooltip }, { ...definitions.OverlayTrigger }]
+};
 
-export const SlidingPanelTopBarInstance = {
+const SlidingPanelTopBarInstance = {
   ...definitions.SlidingPanelTopBar,
-  children: [
-    RaisedButtonInstance,
-    { ...definitions.SlidingPanelButton },
-  ]
-}
+  children: [RaisedButtonInstance, { ...definitions.SlidingPanelButton }]
+};
 
-export const TextInputInstance = {
+const TextInputInstance = {
   ...definitions.TextInput,
   children: [
     { ...definitions.Tooltip },
     { ...definitions.OverlayTrigger },
-    { ...definitions.DisableAuthorization },
+    { ...definitions.DisableAuthorization }
   ]
-}
+};
 
-
-export const DeviceCommonInfoInstance = {
+const DeviceCommonInfoInstance = {
   ...definitions.DeviceCommonInfo,
-  children: [
-    TextAreaInstance,
-    TextInputInstance,
-  ]
-}
+  children: [TextAreaInstance, TextInputInstance]
+};
 
-export const ParametersInstance = {
+const ParametersInstance = {
   ...definitions.Parameters,
-  children: [
-    ButtonInstance,
-    { ...definitions.BasicInputComponent }
-  ]
-}
+  children: [{ ...definitions.Button }, { ...definitions.BasicInputComponent }]
+};
 
-export const DeviceGenericInfoInstance = {
+const DeviceGenericInfoInstance = {
   ...definitions.DeviceGenericInfo,
   children: [
-    CheckboxButtonInstance,
-    ButtonInstance,
+    { ...definitions.CheckboxButton },
+    { ...definitions.Button },
     ParametersInstance
   ]
-}
+};
 
-export const TabsPanelCellInstance = {
+const TabsPanelCellInstance = {
   ...definitions.TabsPanelCell,
   children: [
     { ...definitions.BasicInputComponent },
-    { ...definitions.ValidationComponent },
+    { ...definitions.ValidationComponent }
   ]
-}
+};
 
-export const DevicePropertyStateInstance = {
+const DevicePropertyStateInstance = {
   ...definitions.DevicePropertyAccessRights,
-  children: [
-    TabsPanelCellInstance
-  ]
-}
+  children: [TabsPanelCellInstance]
+};
 
-export const TabsPanelRowInstance = {
+const TabsPanelRowInstance = {
   ...definitions.TabsPanelRow,
   children: [
     TabsPanelCellInstance,
     DevicePropertyStateInstance,
     { ...definitions.DevicePropertyAccessRights }
   ]
-}
+};
 
-export const TabsPanelBodyInstance = {
+const TabsPanelBodyInstance = {
   ...definitions.TabsPanelBody,
-  children: [
-    TabsPanelRowInstance
-  ]
-}
+  children: [TabsPanelRowInstance]
+};
 
-
-export const SlidingPanelTabsContentInstance = {
+const SlidingPanelTabsContentInstance = {
   ...definitions.SlidingPanelTabsContent,
-  children: [
-    TabsPanelBodyInstance
-  ]
-}
+  children: [TabsPanelBodyInstance]
+};
 
-export const SlidingPanelTabsInstance = {
+const SlidingPanelTabsInstance = {
   ...definitions.SlidingPanelTabs,
   children: [
     DeviceCommonInfoInstance,
@@ -332,76 +231,63 @@ export const SlidingPanelTabsInstance = {
     { ...definitions.SlidingPanelButton },
     SlidingPanelTabsContentInstance
   ]
-}
+};
 
-
-export const RightSideInstance = {
+const RightSideInstance = {
   ...definitions.SlidingPanelRightSideComponent,
   children: [
     DeviceSummaryInstance,
     ConnectionInfoInstance,
     GenericTcpIpFormInstance,
     SlidingPanelTopBarInstance,
-    SlidingPanelTabsInstance,
+    SlidingPanelTabsInstance
   ]
-}
+};
 
-export const DropzoneLoadingInstance = {
+const DropzoneLoadingInstance = {
   ...definitions.DropzoneLoading,
-  children: [
-    { ...definitions.CircularProgressbar }
-  ]
-}
+  children: [{ ...definitions.CircularProgressbar }]
+};
 
-export const DeviceImportInstance = {
+const DeviceImportInstance = {
   ...definitions.DeviceImport,
   children: [
     { ...definitions.Dropzone },
     { ...definitions.DeviceImportListItem },
     { ...definitions.DropzonePlaceholder },
-    DropzoneLoadingInstance,
+    DropzoneLoadingInstance
   ]
-}
+};
 
-export const FilterDevicesList = {
+const FilterDevicesList = {
   ...definitions.FilterDevicesList,
-  children: [
-    ButtonInstance,
-    CheckboxButtonInstance
-  ]
-}
+  children: [{ ...definitions.Button }, { ...definitions.CheckboxButton }]
+};
 
-export const FilterDevicesForm = {
+const FilterDevicesForm = {
   ...definitions.FilterDevicesForm,
-  children: [
-    ButtonInstance,
-    FilterDevicesList
-  ]
-}
+  children: [{ ...definitions.Button }, FilterDevicesList]
+};
 
-export const DeviceCatalogFilterInstance = {
+const DeviceCatalogFilterInstance = {
   ...definitions.DeviceCatalogFilter,
-  children: [
-    FilterDevicesForm
-  ]
-}
+  children: [FilterDevicesForm]
+};
 
-export const DeviceCatalogListInstance = {
+const DeviceCatalogListInstance = {
   ...definitions.DeviceCatalogList,
   children: [
     { ...definitions.DeviceCatalogItem },
-    NoResultsViewInstance
+    { ...definitions.NoResultsView }
   ]
-}
+};
 
-export const DeviceCatalogSearchInstance = {
+const DeviceCatalogSearchInstance = {
   ...definitions.DeviceCatalogSearch,
-  children: [
-    { ...definitions.BasicInputComponent }
-  ]
-}
+  children: [{ ...definitions.BasicInputComponent }]
+};
 
-export const DeviceCatalogComponentInstance = {
+const DeviceCatalogComponentInstance = {
   ...definitions.DeviceCatalogComponent,
   children: [
     DeviceImportInstance,
@@ -409,24 +295,20 @@ export const DeviceCatalogComponentInstance = {
     DeviceCatalogListInstance,
     DeviceCatalogSearchInstance
   ]
-}
+};
 
-export const LeftSideInstance = {
+const LeftSideInstance = {
   ...definitions.SlidingPanelLeftSideComponent,
-  children: [
-    DeviceCatalogComponentInstance
-  ]
-}
+  children: [DeviceCatalogComponentInstance]
+};
 
-export const TopologyViewInstance = {
+const TopologyViewInstance = {
   ...definitions.TopologyViewComponent,
-  children: [
-    TopologyEditorInstance
-  ]
-}
+  children: [TopologyEditorInstance]
+};
 
 // Main Containers
-export const ContentBaseInstance = {
+const ContentBaseInstance = {
   ...definitions.ContentBaseComponent,
   children: [
     TopologyViewInstance,
@@ -435,20 +317,16 @@ export const ContentBaseInstance = {
     TabularDevicesInstance,
     TabularConnectionsInstance
   ]
-}
+};
 
-export const AuthorizedComponentInstance = {
+const AuthorizedComponentInstance = {
   ...definitions.AuthorizedComponent,
-  children: [
-    SidebarInstance, TopbarInstance, ContentBaseInstance
-  ]
-}
+  children: [SidebarInstance, TopbarInstance, ContentBaseInstance]
+};
 
-export const AppInstance = {
+const AppInstance = {
   ...definitions.AppComponent,
-  children: [
-    AuthorizedComponentInstance
-  ]
-}
+  children: [AuthorizedComponentInstance]
+};
 
 export default AppInstance;
