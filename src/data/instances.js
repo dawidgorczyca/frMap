@@ -1,7 +1,8 @@
 import * as definitions from "./definitions";
 
 const SettingsInstance = {
-  ...definitions.SettingsComponent
+  ...definitions.SettingsComponent,
+  children: [{ ...definitions.MenuComponent }]
 };
 
 const HiddenComponentAuthorization = {
@@ -81,6 +82,7 @@ const TopbarInstance = {
   children: [
     { ...definitions.MenuComponent },
     DropdownInstance,
+    SettingsInstance,
     ScanManagerInstance
   ]
 };
