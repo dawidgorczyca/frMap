@@ -1,25 +1,10 @@
 export const AppComponent = {
   nodeName: "App",
   component: "App",
-  description:
-    "Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker",
-  propTypes: [
-    "globalVisibility",
-    "nodes",
-    "devices",
-    "otherStuff",
-    "apiResponse",
-    "etc",
-    "someStuff"
-  ],
-  dispatchers: [
-    "getDevices",
-    "setDevices",
-    "getDevicesFromDB",
-    "handleScan",
-    "saveTopology"
-  ],
-  subscriptions: ["devices", "topologyProject", "connections"]
+  description: "App container",
+  propTypes: ["children"],
+  dispatchers: [],
+  subscriptions: []
 };
 
 export const AuthorizedComponent = {
@@ -35,35 +20,47 @@ export const SidebarComponent = {
   nodeName: "Sidebar Component",
   component: "Sidebar",
   description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  propTypes: [
+    "translation",
+    "dispatch",
+    "currentCommunicationStructure",
+    "communicationStructures",
+    "topologyTitle",
+    "topologyId"
+  ],
+  dispatchers: ["clearProjectDevices", "createEmptyTopologyProject"],
+  subscriptions: [
+    "communicationStructures",
+    "currentCommunicationStructure",
+    "topologyTitle",
+    "topologyId"
+  ]
 };
 
 export const TopbarComponent = {
   nodeName: "Topbar Component",
   component: "Topbar",
   description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  propTypes: ["translation", "dispatch", "layout"],
+  dispatchers: ["modifySectionByName", "showModal"],
+  subscriptions: ["layout"]
 };
 
 export const ContentBaseComponent = {
   nodeName: "Content Base Component",
   component: "ContentBase",
   description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  propTypes: ["dispatch", "layout"],
+  dispatchers: ["addSection", "modifySectionByName"],
+  subscriptions: ["layout"]
 };
 
 export const UserMenuComponent = {
   nodeName: "User Menu Component",
   component: "UserMenu",
   description: "",
-  propTypes: [],
-  dispatchers: [],
+  propTypes: ["dispatch"],
+  dispatchers: ["logout"],
   subscriptions: []
 };
 
@@ -71,8 +68,8 @@ export const NavigationMenuComponent = {
   nodeName: "Navigation Menu Component",
   component: "NavigationMenu",
   description: "",
-  propTypes: [],
-  dispatchers: [],
+  propTypes: ["translation", "dispatch"],
+  dispatchers: ["showModal", "modifySectionByName", "hideModal"],
   subscriptions: []
 };
 
@@ -80,7 +77,7 @@ export const SettingsComponent = {
   nodeName: "Settings Component",
   component: "Settings",
   description: "",
-  propTypes: [],
+  propTypes: ["translation"],
   dispatchers: [],
   subscriptions: []
 };
@@ -89,7 +86,7 @@ export const MenuComponent = {
   nodeName: "Menu Component",
   component: "Menu",
   description: "",
-  propTypes: [],
+  propTypes: ["className", "type", "orientation", "children"],
   dispatchers: [],
   subscriptions: []
 };
@@ -98,7 +95,7 @@ export const DropdownComponent = {
   nodeName: "Dropdown Component",
   component: "Dropdown",
   description: "",
-  propTypes: [],
+  propTypes: ["className", "title", "position", "icon", "iconOpen", "children"],
   dispatchers: [],
   subscriptions: []
 };
@@ -107,8 +104,8 @@ export const TopologyViewComponent = {
   nodeName: "Topology View Component",
   component: "TopologyView",
   description: "",
-  propTypes: [],
-  dispatchers: [],
+  propTypes: ["dispatch"],
+  dispatchers: ["modifySectionByName"],
   subscriptions: []
 };
 
@@ -116,16 +113,90 @@ export const TopologyEditorComponent = {
   nodeName: "Topology Editor Component",
   component: "TopologyEditor",
   description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  propTypes: [
+    "id",
+    "status",
+    "title",
+    "currentCommunicationStructure",
+    "communicationStructures",
+    "connectDropTarget",
+    "deviceActions",
+    "topologyAction",
+    "devicesList",
+    "handleDeviceClick",
+    "connectionsActions",
+    "layoutActions",
+    "communicationActions",
+    "getObjectStateInterfaceData",
+    "projectDevices",
+    "connections",
+    "dispatch",
+    "connectionSetEdit",
+    "removeTabData",
+    "addProjectDevice",
+    "removeProjectDevice",
+    "addScannedProjectDevice",
+    "clearProjectDevices",
+    "addMastersIpToDevice",
+    "updateScanData"
+  ],
+  dispatchers: [
+    "topologyAction",
+    "deviceActions",
+    "exportStatus",
+    "connectionsActions",
+    "layoutActions",
+    "communicationActions",
+    "getObjectStateInterfaceData",
+    "hideModal",
+    "connectionSetEdit",
+    "removeTabData",
+    "addProjectDevice",
+    "removeProjectDevice",
+    "addScannedProjectDevice",
+    "clearProjectDevices",
+    "addMastersIpToDevice",
+    "updateScanData",
+    "modifySectionByName",
+    "updateLayer",
+    "updateBackground"
+  ],
+  subscriptions: [
+    "id",
+    "status",
+    "title",
+    "currentCommunicationStructure",
+    "communicationStructures",
+    "devicesNetworkData",
+    "devicesList",
+    "activeSelection",
+    "source",
+    "connections",
+    "projectDevices",
+    "background",
+    "grid"
+  ]
 };
 
 export const ZoomElementComponent = {
   nodeName: "Zoom Element Component",
   component: "ZoomElement",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "zoomClass",
+    "zoomInBtnClass",
+    "zoomValue",
+    "zoomOutBtnClass",
+    "resetBtnClass",
+    "iconZoomIn",
+    "iconZoomOut",
+    "iconZoomReset",
+    "handleZoomIn",
+    "handleZoomOut",
+    "handleZoomReset",
+    "vertical",
+    "disabled"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -143,35 +214,56 @@ export const SlidingPanelRightSideComponent = {
   nodeName: "Sliding Panel Right Side Component",
   component: "SlidingPanel",
   description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  propTypes: [
+    "name",
+    "dispatch",
+    "position",
+    "visibility",
+    "data",
+    "status",
+    "source",
+    "subtype",
+    "setSectionStatus",
+    "setSectionVisibility",
+    "setSectionSource",
+    "isMasterOnline",
+    "isConnectedToPLC"
+  ],
+  dispatchers: ["setTabCommunicationStatus"],
+  subscriptions: ["communicationStatus"]
 };
 
 export const SlidingPanelLeftSideComponent = {
   nodeName: "Sliding Panel Left Side Component",
   component: "SlidingPanel",
   description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  propTypes: ["name", "dispatch", "position", "status", "visibility"],
+  dispatchers: ["setTabCommunicationStatus"],
+  subscriptions: ["communicationStatus"]
 };
 
 export const DeviceCatalogComponent = {
   nodeName: "Device Catalog Component",
   component: "DeviceCatalog",
   description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  propTypes: [
+    "translation",
+    "devices",
+    "layout",
+    "devicesActions",
+    "layoutActions",
+    "dispatch"
+  ],
+  dispatchers: ["devicesActions", "layoutActions"],
+  subscriptions: ["devices", "layout"]
 };
 
 export const DeviceCatalogSearch = {
   nodeName: "Device Catalog Search Component",
   component: "DeviceCatalogSearch",
   description: "",
-  propTypes: [],
-  dispatchers: [],
+  propTypes: ["translation", "devicesActions"],
+  dispatchers: ["setListDevicesQuery"],
   subscriptions: []
 };
 
@@ -179,8 +271,13 @@ export const DeviceImport = {
   nodeName: "DeviceImport Component",
   component: "DeviceImport",
   description: "",
-  propTypes: [],
-  dispatchers: [],
+  propTypes: ["translation", "showModal", "addModalBody", "devicesActions"],
+  dispatchers: [
+    "devicesActions",
+    "showModal",
+    "addModalBody",
+    "changeAlertVisibility"
+  ],
   subscriptions: []
 };
 
@@ -188,8 +285,22 @@ export const DeviceCatalogFilter = {
   nodeName: "Device Catalog Filter Component",
   component: "DeviceCatalogFilter",
   description: "",
-  propTypes: [],
-  dispatchers: [],
+  propTypes: [
+    "showModal",
+    "hideModal",
+    "translation",
+    "vendors",
+    "types",
+    "categories",
+    "devicesActions",
+    "devicesList"
+  ],
+  dispatchers: [
+    "getVendors",
+    "getTypes",
+    "getCategories",
+    "getFilteredDevices"
+  ],
   subscriptions: []
 };
 
@@ -197,25 +308,50 @@ export const DeviceCatalogList = {
   nodeName: "Device Catalog List Component",
   component: "Device Catalog List",
   description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  propTypes: [
+    "devicesList",
+    "devicesActions",
+    "devicesListQuery",
+    "filteredDevices",
+    "types",
+    "itemOnClick"
+  ],
+  dispatchers: [
+    "clearListDevices",
+    "clearListQuery",
+    "clearFilterDevices",
+    "getDevices"
+  ],
+  subscriptions: ["types"]
 };
 
 export const ProjectConfigurator = {
   nodeName: "ProjectConfigurator Component",
   component: "Project Configurator",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "className",
+    "dispatch",
+    "communicationStructures",
+    "currentCommunicationStructure",
+    "title",
+    "topologyId",
+    "translation"
+  ],
   dispatchers: [],
-  subscriptions: []
+  subscriptions: [
+    "communicationStructures",
+    "currentCommunicationStructure",
+    "title",
+    "topologyId"
+  ]
 };
 
 export const OutsideAlerter = {
   nodeName: "OutsideAlerter Component",
   component: "Outside Alerter",
   description: "",
-  propTypes: [],
+  propTypes: ["children", "handleClickOutside"],
   dispatchers: [],
   subscriptions: []
 };
@@ -224,7 +360,7 @@ export const WebviewElement = {
   nodeName: "WebviewElement Component",
   component: "WebviewElement",
   description: "",
-  propTypes: [],
+  propTypes: ["src", "style", "btnText"],
   dispatchers: [],
   subscriptions: []
 };
@@ -233,16 +369,28 @@ export const ModalLog = {
   nodeName: "ModalLog Component",
   component: "ModalLog",
   description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  propTypes: ["getLog", "log", "translation", "changeModalClass"],
+  dispatchers: ["getLog", "changeModalClass"],
+  subscriptions: ["log"]
 };
 
 export const Button = {
   nodeName: "Button Component",
   component: "Button",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "className",
+    "text",
+    "icon",
+    "glyph",
+    "fullWidth",
+    "displayBlock",
+    "smallIcon",
+    "mediumIcon",
+    "largeIcon",
+    "disabled",
+    "onClick"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -259,26 +407,119 @@ export const ScanManager = {
 export const DevicesScanManager = {
   nodeName: "DevicesScanManager Component",
   component: "DevicesScanManager",
-  description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  description:
+    "Scan devices manager for manage displaying scanned devices and selecting them.",
+  propTypes: [
+    "runDevicesScan",
+    "dispatch",
+    "handleStartScan",
+    "handleScanWindowChange",
+    "addModalTitle",
+    "addModalFooter",
+    "changeModalClass",
+    "setScannedDevices",
+    "clearScannedDevices",
+    "addScannedDevice",
+    "scannedDevices",
+    "devicesCount",
+    "physicalDevice",
+    "physicalConnection",
+    "protocolsToDisplay",
+    "interfaces",
+    "translation",
+    "openTopology",
+    "hideModal",
+    "topologyProject",
+    "currCommStruct",
+    "pingDevices",
+    "pingDevicesCount",
+    "addPingData",
+    "addPingSNMPData",
+    "runSNMPBulk",
+    "isSnmpComplete",
+    "isPingComplete",
+    "projectDevices",
+    "addScannedProjectDevice",
+    "currentStatus",
+    "changeScanningStatus"
+  ],
+  dispatchers: [
+    "runDevicesScan",
+    "addModalTitle",
+    "addModalBody",
+    "addModalFooter",
+    "changeModalClass",
+    "setScannedDevices",
+    "clearScannedDevices",
+    "addScannedDevice",
+    "updateScannedDevice",
+    "getDeviceByIdVendorAndProduct",
+    "openTopology",
+    "hideModal",
+    "dispatch",
+    "addPingData",
+    "addPingSNMPData",
+    "runSNMPBulk",
+    "addScannedProjectDevice",
+    "changeScanningStatus"
+  ],
+  subscriptions: [
+    "scannedDevices",
+    "devicesCount",
+    "communicationStructures",
+    "physicalDevice",
+    "physicalConnection",
+    "topologyProject",
+    "currCommStruct",
+    "pingDevices",
+    "pingDevicesCount",
+    "isPingComplete",
+    "isUdpComplete",
+    "isSnmpComplete",
+    "projectDevices",
+    "currentStatus"
+  ]
 };
 
 export const InterfacesScanManager = {
   nodeName: "InterfacesScanManager Component",
   component: "InterfacesScanManager",
-  description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  description:
+    "Scan interfaces manager for manage displaying and selecting interfaces to scan.",
+  propTypes: [
+    "runInterfaceScan",
+    "setDefaultNetworkRanges",
+    "setDefaultProtocols",
+    "setSelectedInterface",
+    "scanDefaults",
+    "handleStartScan",
+    "handleScanWindowChange",
+    "handleInterfacesUpdate",
+    "addModalTitle",
+    "addModalFooter",
+    "changeModalClass",
+    "clearScannedDevices",
+    "translation"
+  ],
+  dispatchers: [
+    "runInterfaceScan",
+    "setDefaultNetworkRanges",
+    "setDefaultProtocols",
+    "setSelectedInterface",
+    "addModalTitle",
+    "addModalFooter",
+    "changeModalClass",
+    "clearScannedDevices",
+    "dispatch"
+  ],
+  subscriptions: ["interfaces", "scanDefaults"]
 };
 
 export const InterfacesList = {
   nodeName: "InterfacesList Component",
   component: "InterfacesList",
-  description: "",
-  propTypes: [],
+  description: "A list component for displaying and selecting interfaces.",
+  propTypes: ["scanListClassname", "interfaces", "handleInterfacesUpdate"],
   dispatchers: [],
   subscriptions: []
 };
@@ -286,8 +527,9 @@ export const InterfacesList = {
 export const NoResultsView = {
   nodeName: "NoResultsView Component",
   component: "NoResultsView",
-  description: "",
-  propTypes: [],
+  description:
+    "Graphic component for diplaying and icon with label containing information about no results where found",
+  propTypes: ["translation"],
   dispatchers: [],
   subscriptions: []
 };
@@ -295,8 +537,14 @@ export const NoResultsView = {
 export const SingleInterfaceList = {
   nodeName: "SingleInterfaceList Component",
   component: "SingleInterfaceList",
-  description: "",
-  propTypes: [],
+  description:
+    "A list component for displaying and manage single interface item on the list.",
+  propTypes: [
+    "translation",
+    "networkInterface",
+    "interfaceListClassname",
+    "handleInterfaceClick"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -305,7 +553,15 @@ export const CheckboxButton = {
   nodeName: "CheckboxButton Component",
   component: "CheckboxButton",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "itemId",
+    "itemName",
+    "checkboxBtnClass",
+    "labelClass",
+    "handleCheckboxClick",
+    "isChecked",
+    "isDisabled"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -313,8 +569,17 @@ export const CheckboxButton = {
 export const NetworkRangeInput = {
   nodeName: "NetworkRangeInput Component",
   component: "NetworkRangeInput",
-  description: "",
-  propTypes: [],
+  description: "Form field for network range input.",
+  propTypes: [
+    "componentId",
+    "first",
+    "last",
+    "rangeFirst",
+    "rangeLast",
+    "containerClass",
+    "handleInputsChange",
+    "isDisabled"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -322,8 +587,8 @@ export const NetworkRangeInput = {
 export const SimpleListHeader = {
   nodeName: "SimpleListHeader Component",
   component: "SimpleListHeader",
-  description: "",
-  propTypes: [],
+  description: "Graphic component for diplaying very simple header for lists",
+  propTypes: ["headerClass", "titleClass", "heightAuto", "children", "title"],
   dispatchers: [],
   subscriptions: []
 };
@@ -332,7 +597,7 @@ export const SimpleDottedProgress = {
   nodeName: "SimpleDottedProgress Component",
   component: "SimpleDottedProgress",
   description: "",
-  propTypes: [],
+  propTypes: ["label", "className", "isActive"],
   dispatchers: [],
   subscriptions: []
 };
@@ -341,7 +606,16 @@ export const DevicesList = {
   nodeName: "DevicesList Component",
   component: "DevicesList",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "scanListClassname",
+    "scanInProgress",
+    "handleDeviceSelection",
+    "handleDeviceNameClick",
+    "translation",
+    "devices",
+    "devicesCount",
+    "isPing"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -350,7 +624,15 @@ export const ListItemBackground = {
   nodeName: "ListItemBackground Component",
   component: "ListItemBackground",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "existing",
+    "className",
+    "heightAuto",
+    "isParent",
+    "hasChildren",
+    "solidBackground",
+    "noBackground"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -368,16 +650,16 @@ export const TabularViewDevices = {
   nodeName: "TabularViewDevices Component",
   component: "TabularViewDevices",
   description: "",
-  propTypes: [],
+  propTypes: ["visibility", "translation", "devicesOnTopology"],
   dispatchers: [],
-  subscriptions: []
+  subscriptions: ["devicesOnTopology"]
 };
 
 export const TabularViewConnections = {
   nodeName: "TabularViewConnections Component",
   component: "Spinner",
-  description: "",
-  propTypes: [],
+  description: "Includes tabular view components",
+  propTypes: ["visibility", "translation"],
   dispatchers: [],
   subscriptions: []
 };
@@ -386,7 +668,18 @@ export const FlatButton = {
   nodeName: "FlatButton Component",
   component: "FlatButton",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "id",
+    "btnClass",
+    "btnTextClass",
+    "btnWrapperClass",
+    "icon",
+    "text",
+    "tooltip",
+    "onClick",
+    "dottedBorderBottom",
+    "disabled"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -408,7 +701,7 @@ export const WithAuthorization = {
     "Creates an element used to replace an original component based on access config file.",
   propTypes: ["id", "msg", "ReplacementWrapper"],
   dispatchers: [],
-  subscriptions: []
+  subscriptions: ["user"]
 };
 
 export const Dropzone = {
@@ -424,7 +717,7 @@ export const DeviceImportListItem = {
   nodeName: "DeviceImportListItem Component",
   component: "DeviceImportListItem",
   description: "",
-  propTypes: [],
+  propTypes: ["status", "name"],
   dispatchers: [],
   subscriptions: []
 };
@@ -433,7 +726,7 @@ export const DropzonePlaceholder = {
   nodeName: "DropzonePlaceholder Component",
   component: "DropzonePlaceholder",
   description: "",
-  propTypes: [],
+  propTypes: ["heading", "subheading"],
   dispatchers: [],
   subscriptions: []
 };
@@ -460,8 +753,16 @@ export const FilterDevicesForm = {
   nodeName: "FilterDevicesForm Component",
   component: "FilterDevicesForm",
   description: "",
-  propTypes: [],
-  dispatchers: [],
+  propTypes: [
+    "onSubmitFilter",
+    "addModalFooter",
+    "translation",
+    "selectedFilters",
+    "vendors",
+    "categories",
+    "types"
+  ],
+  dispatchers: ["addModalFooter"],
   subscriptions: []
 };
 
@@ -469,7 +770,15 @@ export const FilterDevicesList = {
   nodeName: "FilterDevicesList Component",
   component: "FilterDevicesList",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "title",
+    "filterList",
+    "handleOnChange",
+    "selectedFilter",
+    "handleClearingList",
+    "handleSelectColumn",
+    "clearFilterList"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -478,7 +787,15 @@ export const DeviceCatalogItem = {
   nodeName: "DeviceCatalogItem Component",
   component: "DeviceCatalogItem",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "className",
+    "device",
+    "selected",
+    "onClick",
+    "isDragging",
+    "connectDragSource",
+    "connectDragPreview"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -487,7 +804,20 @@ export const BasicInputComponent = {
   nodeName: "BasicInputComponent Component",
   component: "BasicInputComponent",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "label",
+    "wrapperClass",
+    "name",
+    "type",
+    "value",
+    "onChange",
+    "onBlur",
+    "options",
+    "checked",
+    "disabled",
+    "min",
+    "placeholder"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -496,7 +826,7 @@ export const DeviceSummary = {
   nodeName: "DeviceSummary Component",
   component: "DeviceSummary",
   description: "",
-  propTypes: [],
+  propTypes: ["translation", "data", "source", "dispatch"],
   dispatchers: [],
   subscriptions: []
 };
@@ -505,17 +835,33 @@ export const ConnectionInfo = {
   nodeName: "ConnectionInfo Component",
   component: "ConnectionInfo",
   description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  propTypes: [
+    "data",
+    "translation",
+    "connections",
+    "connectionSetEdit",
+    "connection"
+  ],
+  dispatchers: ["connectionSetEdit"],
+  subscriptions: ["connection", "connections"]
 };
 
 export const GenericTcpIpForm = {
   nodeName: "GenericTcpIpForm Component",
   component: "GenericTcpIpForm",
   description: "",
-  propTypes: [],
-  dispatchers: [],
+  propTypes: [
+    "id",
+    "translation",
+    "initForm",
+    "status",
+    "createActiveElement",
+    "updateDevice",
+    "source",
+    "device",
+    "handleSubmitSuccess"
+  ],
+  dispatchers: ["createActiveElement", "updateDevice", "initForm"],
   subscriptions: []
 };
 
@@ -523,25 +869,36 @@ export const SlidingPanelTopBar = {
   nodeName: "SlidingPanelTopBar Component",
   component: "SlidingPanelTopBar",
   description: "",
-  propTypes: [],
+  propTypes: ["title", "translation", "isConnectedToPLC"],
   dispatchers: [],
-  subscriptions: []
+  subscriptions: ["tabsContent"]
 };
 
 export const SlidingPanelTabs = {
   nodeName: "SlidingPanelTabs Component",
   component: "SlidingPanelTabs",
   description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  propTypes: [
+    "translation",
+    "tabs",
+    "status",
+    "data",
+    "dispatch",
+    "setSectionStatus",
+    "setActiveTab",
+    "isMasterOnline",
+    "source",
+    "language"
+  ],
+  dispatchers: ["getSectionByName"],
+  subscriptions: ["language"]
 };
 
 export const DeviceStatus = {
   nodeName: "DeviceStatus Component",
   component: "DeviceStatus",
   description: "",
-  propTypes: [],
+  propTypes: ["status", "statusClass", "width", "isVertical"],
   dispatchers: [],
   subscriptions: []
 };
@@ -550,8 +907,15 @@ export const MasterConfigurationForm = {
   nodeName: "MasterConfigurationForm Component",
   component: "MasterConfigurationForm",
   description: "",
-  propTypes: [],
-  dispatchers: [],
+  propTypes: [
+    "translation",
+    "device",
+    "dispatch",
+    "showIpField",
+    "showDescriptionField",
+    "showMacAddress"
+  ],
+  dispatchers: ["updateScanData"],
   subscriptions: []
 };
 
@@ -559,7 +923,7 @@ export const ValidationComponent = {
   nodeName: "ValidationComponent Component",
   component: "ValidationComponent",
   description: "@balluf npm package",
-  propTypes: [],
+  propTypes: ["handleChange", "method", "value", "finished"],
   dispatchers: [],
   subscriptions: []
 };
@@ -577,7 +941,26 @@ export const TextInput = {
   nodeName: "TextInput Component",
   component: "TextInput",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "defaultValue",
+    "containerClass",
+    "inputClass",
+    "labelClass",
+    "icon",
+    "disabled",
+    "name",
+    "placeholder",
+    "text",
+    "type",
+    "onChange",
+    "handleOnBlur",
+    "inline",
+    "thin",
+    "error",
+    "onError",
+    "disableErrorTooltip",
+    "id"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -586,7 +969,7 @@ export const CommonFormSection = {
   nodeName: "CommonFormSection Component",
   component: "CommonFormSection",
   description: "",
-  propTypes: [],
+  propTypes: ["children", "headerText", "useOvalHeader"],
   dispatchers: [],
   subscriptions: []
 };
@@ -595,16 +978,37 @@ export const Form = {
   nodeName: "Form Component",
   component: "Form",
   description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  propTypes: [
+    "id",
+    "forms",
+    "initForm",
+    "setDefaultState",
+    "setValidState",
+    "children",
+    "onSubmit"
+  ],
+  dispatchers: [
+    "initForm",
+    "callReset",
+    "callSubmit",
+    "setValidState",
+    "setDefaultState"
+  ],
+  subscriptions: ["forms"]
 };
 
 export const FormFieldsGroup = {
   nodeName: "FormFieldsGroup Component",
   component: "FormFieldsGroup",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "className",
+    "children",
+    "values",
+    "fieldsData",
+    "onChange",
+    "onError"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -612,8 +1016,9 @@ export const FormFieldsGroup = {
 export const DisableAuthorization = {
   nodeName: "DisableAuthorization Component",
   component: "DisableAuthorization",
-  description: "",
-  propTypes: [],
+  description:
+    "Sets enabled or disabled property on wrapped input component based on access configuration file.  Assigning boolean value to instance of wrapped component will overwrite default access rights.",
+  propTypes: ["roles", "id"],
   dispatchers: [],
   subscriptions: []
 };
@@ -622,7 +1027,16 @@ export const RaisedButton = {
   nodeName: "RaisedButton Component",
   component: "RaisedButton",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "btnClass",
+    "text",
+    "icon",
+    "fullWidth",
+    "displayBlock",
+    "tooltip",
+    "onClick",
+    "disabled"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -631,7 +1045,14 @@ export const SlidingPanelButton = {
   nodeName: "SlidingPanelButton Component",
   component: "SlidingPanelButton",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "className",
+    "classNames",
+    "icon",
+    "label",
+    "onClick",
+    "isDisabled"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -639,8 +1060,16 @@ export const SlidingPanelButton = {
 export const Tooltip = {
   nodeName: "Tooltip Component",
   component: "Tooltip",
-  description: "",
-  propTypes: [],
+  description: "React bootstrap component",
+  propTypes: [
+    "arrowOffsetLeft",
+    "arrowOffsetTop",
+    "bsSize",
+    "bsStyle",
+    "placement",
+    "positionLeft",
+    "positionTop"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -648,8 +1077,26 @@ export const Tooltip = {
 export const OverlayTrigger = {
   nodeName: "OverlayTrigger Component",
   component: "OverlayTrigger",
-  description: "",
-  propTypes: [],
+  description: "React bootstrap component",
+  propTypes: [
+    "overlay",
+    "animation",
+    "container",
+    "containerPadding",
+    "defaultOverlayShown",
+    "delay",
+    "delayHide",
+    "delayShow",
+    "onEnter",
+    "onEntered",
+    "onEntering",
+    "onExit",
+    "onExited",
+    "onExiting",
+    "placement",
+    "rootClose",
+    "trigger"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -658,7 +1105,14 @@ export const SlidingPanelTabsContent = {
   nodeName: "SlidingPanelTabsContent Component",
   component: "SlidingPanelTabsContent",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "data",
+    "language",
+    "ioLinkRevision",
+    "tabName",
+    "activeTab",
+    "deviceId"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -667,7 +1121,7 @@ export const DeviceCommonInfo = {
   nodeName: "DeviceCommonInfo Component",
   component: "DeviceCommonInfo",
   description: "",
-  propTypes: [],
+  propTypes: ["translation", "device", "expanded", "activeTab", "tabName"],
   dispatchers: [],
   subscriptions: []
 };
@@ -676,25 +1130,60 @@ export const DeviceGenericInfo = {
   nodeName: "DeviceGenericInfo Component",
   component: "DeviceGenericInfo",
   description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  propTypes: [
+    "translation",
+    "isDisabled",
+    "connectionParameters",
+    "dispatch",
+    "directParameters",
+    "inputProcessData",
+    "outputProcessData",
+    "device",
+    "getGenericLiveData",
+    "communicationStatus",
+    "setTabCommunicationStatus",
+    "activeTab",
+    "tabName"
+  ],
+  dispatchers: ["setTabCommunicationStatus", "getGenericLiveData"],
+  subscriptions: ["communicationStatus"]
 };
 
 export const Parameters = {
   nodeName: "Parameters Component",
   component: "Parameters",
   description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  propTypes: [
+    "translation",
+    "isDisabled",
+    "connectionParameters",
+    "dispatch",
+    "readParameterData",
+    "deviceId",
+    "communicationStatus",
+    "setTabCommunicationStatus"
+  ],
+  dispatchers: ["setTabCommunicationStatus"],
+  subscriptions: ["readParameterData", "communicationStatus"]
 };
 
 export const TabsPanelBody = {
   nodeName: "TabsPanelBody Component",
   component: "TabsPanelBody",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "data",
+    "className",
+    "translation",
+    "headings",
+    "deviceId",
+    "tabName",
+    "translations",
+    "variableCollection",
+    "processDataCollection",
+    "connectionParameters",
+    "source"
+  ],
   dispatchers: [],
   subscriptions: []
 };
@@ -703,16 +1192,30 @@ export const TabsPanelRow = {
   nodeName: "TabsPanelRow Component",
   component: "TabsPanelRow",
   description: "",
-  propTypes: [],
+  propTypes: [
+    "element",
+    "showAccessRights",
+    "deviceId",
+    "tabName",
+    "translations",
+    "language",
+    "connectionParameters",
+    "isInput",
+    "isOutput",
+    "source",
+    "isProcessData",
+    "tabsDevices",
+    "variableName"
+  ],
   dispatchers: [],
-  subscriptions: []
+  subscriptions: ["tabsDevices", "language"]
 };
 
 export const DevicePropertyAccessRights = {
   nodeName: "DevicePropertyAccessRights Component",
   component: "DevicePropertyAccessRights",
   description: "",
-  propTypes: [],
+  propTypes: ["accessRights"],
   dispatchers: [],
   subscriptions: []
 };
@@ -721,7 +1224,7 @@ export const DevicePropertyState = {
   nodeName: "DevicePropertyState Component",
   component: "DevicePropertyState",
   description: "",
-  propTypes: [],
+  propTypes: ["state"],
   dispatchers: [],
   subscriptions: []
 };
@@ -730,16 +1233,37 @@ export const TabsPanelCell = {
   nodeName: "TabsPanelCell Component",
   component: "TabsPanelCell",
   description: "",
-  propTypes: [],
-  dispatchers: [],
-  subscriptions: []
+  propTypes: [
+    "element",
+    "className",
+    "tabName",
+    "addTabData",
+    "name",
+    "isEditable",
+    "deviceId",
+    "inputType",
+    "content",
+    "translations",
+    "language",
+    "connectionParameters",
+    "dispatch",
+    "communicationStatus",
+    "state",
+    "source",
+    "isProcessData",
+    "shouldAddTabData",
+    "variableName",
+    "translation"
+  ],
+  dispatchers: ["addTabData"],
+  subscriptions: ["communicationStatus"]
 };
 
 export const TabularHeader = {
   nodeName: "TabularHeader Component",
   component: "TabularHeader",
   description: "",
-  propTypes: [],
+  propTypes: ["header", "subtitle", "toolbar"],
   dispatchers: [],
   subscriptions: []
 };
