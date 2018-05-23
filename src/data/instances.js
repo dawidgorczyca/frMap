@@ -5,19 +5,39 @@ const SettingsInstance = {
   children: [{ ...definitions.MenuComponent }]
 };
 
+const WithAuthorizationInstance = {
+  ...definitions.WithAuthorization,
+  children: [{ ...definitions.WrappedComponent }]
+};
+
 const HiddenComponentAuthorization = {
   ...definitions.HiddenComponentAuthorization,
-  children: [{ ...definitions.WithAuthorization }]
+  children: [WithAuthorizationInstance]
 };
 
 const FlatButtonInstance = {
   ...definitions.FlatButton,
-  children: [HiddenComponentAuthorization]
+  children: [
+    HiddenComponentAuthorization,
+    {
+      ...definitions.OverlayTrigger,
+      children: [
+        {
+          ...definitions.Tooltip
+        }
+      ]
+    }
+  ]
 };
 
 const ZoomElementInstance = {
   ...definitions.ZoomElementComponent,
-  children: [FlatButtonInstance]
+  children: [
+    FlatButtonInstance,
+    FlatButtonInstance,
+    FlatButtonInstance,
+    FlatButtonInstance
+  ]
 };
 
 const TopologyEditorInstance = {
@@ -29,8 +49,10 @@ const DevicesListInstance = {
   ...definitions.DevicesList,
   children: [
     { ...definitions.SimpleDottedProgress },
-    { ...definitions.CheckboxButton },
-    { ...definitions.SimpleListHeader },
+    {
+      ...definitions.SimpleListHeader,
+      children: [{ ...definitions.CheckboxButton }]
+    },
     { ...definitions.ListItemBackground },
     { ...definitions.NoResultsView }
   ]
@@ -44,21 +66,25 @@ const DropdownInstance = {
 const DevicesScanManagerInstance = {
   ...definitions.DevicesScanManager,
   children: [
-    { ...definitions.SimpleDottedProgress },
-    { ...definitions.Spinner },
     DevicesListInstance,
     { ...definitions.Button },
-    { ...definitions.SimpleListHeader }
+    { ...definitions.Button },
+    {
+      ...definitions.SimpleListHeader,
+      children: [{ ...definitions.SimpleDottedProgress }]
+    }
   ]
 };
 
 const SingleInterfaceListInstance = {
   ...definitions.SingleInterfaceList,
   children: [
-    { ...definitions.CheckboxButton },
     { ...definitions.Button },
     { ...definitions.NetworkRangeInput },
-    { ...definitions.SimpleListHeader }
+    {
+      ...definitions.SimpleListHeader,
+      children: [{ ...definitions.CheckboxButton }]
+    }
   ]
 };
 
@@ -80,16 +106,40 @@ const ScanManagerInstance = {
 const TopbarInstance = {
   ...definitions.TopbarComponent,
   children: [
-    { ...definitions.MenuComponent },
-    DropdownInstance,
-    SettingsInstance,
-    ScanManagerInstance
+    {
+      ...definitions.MenuComponent,
+      children: [
+        {
+          DropdownInstance,
+          children: [SettingsInstance]
+        }
+      ]
+    },
+    ScanManagerInstance,
+    {
+      ...definitions.MenuComponent,
+      children: [
+        {
+          ...definitions.MenuComponent,
+          children: [
+            {
+              DropdownInstance,
+              children: [SettingsInstance]
+            }
+          ]
+        }
+      ]
+    }
   ]
 };
 
 const ModalLogInstance = {
   ...definitions.ModalLog,
-  children: [{ ...definitions.Button }]
+  children: [
+    { ...definitions.ReactTable },
+    { ...definitions.Button },
+    { ...definitions.Button }
+  ]
 };
 
 const NavigationMenuInstance = {
@@ -97,12 +147,39 @@ const NavigationMenuInstance = {
   children: [ModalLogInstance, { ...definitions.WebviewElement }]
 };
 
+const ImportInstance = {
+  ...definitions.Import,
+  children: [
+    ...definitions.Alert,
+    ...definitions.ProgressBar,
+    ...definitions.Interpolate,
+    ...definitions.Dropzone
+  ]
+};
+
+const ImportTopologyFormInstance = {
+  ...definitions.ImportTopologyForm,
+  children: [ImportInstance]
+};
+
+const ProjectConfigurator = {
+  ...definitions.ProjectConfigurator,
+  children: [ImportTopologyFormInstance, {...definitions.BasicInputComponent}]
+};
+
 const SidebarInstance = {
   ...definitions.SidebarComponent,
   children: [
     { ...definitions.UserMenuComponent },
-    { ...definitions.MenuComponent },
-    DropdownInstance,
+    {
+      ...definitions.MenuComponent,
+      children: [
+        {
+          ...DropdownInstance,
+          children: [...DropdownInstance.children, ProjectConfigurator]
+        }
+      ]
+    },
     NavigationMenuInstance
   ]
 };
@@ -113,7 +190,8 @@ const TabularDevicesInstance = {
   children: [
     { ...definitions.DeviceStatus },
     { ...definitions.NoResultsView },
-    { ...definitions.TabularHeader }
+    { ...definitions.TabularHeader },
+    { ...definitions.ReactTable }
   ]
 };
 
@@ -132,11 +210,25 @@ const DeviceSummaryInstance = {
   children: [{ ...definitions.DeviceStatus }, MasterConfigurationFormInstance]
 };
 
+const TextInputInstance = {
+  ...definitions.TextInput,
+  children: [
+    { ...definitions.OverlayTrigger, children: [{ ...definitions.Tooltip }] },
+    { ...definitions.DisableAuthorization }
+  ]
+};
+
 const ConnectionInfoInstance = {
   ...definitions.ConnectionInfo,
   children: [
-    { ...definitions.BasicInputComponent },
-    { ...definitions.ValidationComponent }
+    TextInputInstance,
+    TextInputInstance,
+    TextInputInstance,
+    {
+      ...definitions.ValidationComponent,
+      children: [{ ...definitions.BasicInputComponent }]
+    },
+    { ...definitions.BasicInputComponent }
   ]
 };
 
@@ -148,46 +240,89 @@ const TextAreaInstance = {
 const GenericTcpIpFormInstance = {
   ...definitions.GenericTcpIpForm,
   children: [
-    TextAreaInstance,
-    { ...definitions.Form },
-    { ...definitions.FormFieldsGroup },
-    { ...definitions.CommonFormSection }
+    {
+      ...definitions.Form,
+      children: [
+        { ...definitions.CommonFormSection },
+        {
+          ...definitions.FormFieldsGroup,
+          children: [TextAreaInstance]
+        }
+      ]
+    }
   ]
 };
 
 const RaisedButtonInstance = {
   ...definitions.RaisedButton,
-  children: [{ ...definitions.Tooltip }, { ...definitions.OverlayTrigger }]
+  children: [
+    {
+      ...definitions.OverlayTrigger,
+      children: [{ ...definitions.Tooltip }]
+    }
+  ]
 };
 
 const SlidingPanelTopBarInstance = {
   ...definitions.SlidingPanelTopBar,
-  children: [RaisedButtonInstance, { ...definitions.SlidingPanelButton }]
-};
-
-const TextInputInstance = {
-  ...definitions.TextInput,
   children: [
-    { ...definitions.Tooltip },
-    { ...definitions.OverlayTrigger },
-    { ...definitions.DisableAuthorization }
+    { ...definitions.SlidingPanelButton },
+    { ...definitions.SlidingPanelButton },
+    RaisedButtonInstance,
+    RaisedButtonInstance
   ]
 };
 
 const DeviceCommonInfoInstance = {
   ...definitions.DeviceCommonInfo,
-  children: [TextAreaInstance, TextInputInstance]
+  children: [
+    TextAreaInstance,
+    TextInputInstance,
+    TextInputInstance,
+    TextInputInstance,
+    TextInputInstance,
+    TextInputInstance,
+    TextInputInstance,
+    TextInputInstance,
+    TextInputInstance
+  ]
 };
 
 const ParametersInstance = {
   ...definitions.Parameters,
-  children: [{ ...definitions.Button }, { ...definitions.BasicInputComponent }]
+  children: [
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.Button },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.Button },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent }
+  ]
 };
 
 const DeviceGenericInfoInstance = {
   ...definitions.DeviceGenericInfo,
   children: [
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent },
     { ...definitions.CheckboxButton },
+    { ...definitions.CheckboxButton },
+    { ...definitions.Button },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent },
     { ...definitions.Button },
     ParametersInstance
   ]
@@ -197,12 +332,19 @@ const TabsPanelCellInstance = {
   ...definitions.TabsPanelCell,
   children: [
     { ...definitions.BasicInputComponent },
-    { ...definitions.ValidationComponent }
+    {
+      ...definitions.ValidationComponent,
+      children: [{ ...definitions.BasicInputComponent }]
+    },
+    {
+      ...definitions.ValidationComponent,
+      children: [{ ...definitions.BasicInputComponent }]
+    }
   ]
 };
 
 const DevicePropertyStateInstance = {
-  ...definitions.DevicePropertyAccessRights,
+  ...definitions.DevicePropertyState,
   children: [TabsPanelCellInstance]
 };
 
@@ -210,8 +352,16 @@ const TabsPanelRowInstance = {
   ...definitions.TabsPanelRow,
   children: [
     TabsPanelCellInstance,
+    {
+      ...TabsPanelCellInstance,
+      children: [
+        ...TabsPanelCellInstance.children,
+        { ...definitions.DevicePropertyAccessRights }
+      ]
+    },
+    TabsPanelCellInstance,
     DevicePropertyStateInstance,
-    { ...definitions.DevicePropertyAccessRights }
+    TabsPanelCellInstance
   ]
 };
 
@@ -238,11 +388,17 @@ const SlidingPanelTabsInstance = {
 const RightSideInstance = {
   ...definitions.SlidingPanelRightSideComponent,
   children: [
+    SlidingPanelTopBarInstance,
     DeviceSummaryInstance,
-    ConnectionInfoInstance,
+    SlidingPanelTabsInstance,
+    SlidingPanelTopBarInstance,
+    DeviceSummaryInstance,
+    SlidingPanelTabsInstance,
+    SlidingPanelTopBarInstance,
+    DeviceSummaryInstance,
     GenericTcpIpFormInstance,
     SlidingPanelTopBarInstance,
-    SlidingPanelTabsInstance
+    ConnectionInfoInstance
   ]
 };
 
@@ -254,10 +410,14 @@ const DropzoneLoadingInstance = {
 const DeviceImportInstance = {
   ...definitions.DeviceImport,
   children: [
-    { ...definitions.Dropzone },
-    { ...definitions.DeviceImportListItem },
-    { ...definitions.DropzonePlaceholder },
-    DropzoneLoadingInstance
+    {
+      ...definitions.Dropzone,
+      children: [
+        DropzoneLoadingInstance,
+        { ...definitions.DropzonePlaceholder }
+      ]
+    },
+    { ...definitions.DeviceImportListItem }
   ]
 };
 
@@ -268,7 +428,12 @@ const FilterDevicesList = {
 
 const FilterDevicesForm = {
   ...definitions.FilterDevicesForm,
-  children: [{ ...definitions.Button }, FilterDevicesList]
+  children: [
+    { ...definitions.Button },
+    FilterDevicesList,
+    FilterDevicesList,
+    FilterDevicesList
+  ]
 };
 
 const DeviceCatalogFilterInstance = {

@@ -1267,3 +1267,98 @@ export const TabularHeader = {
   dispatchers: [],
   subscriptions: []
 };
+
+export const ImportTopologyForm = {
+  nodeName: "ImportTopologyForm Component",
+  component: "ImportTopologyForm",
+  description: "",
+  propTypes: [
+    "translation",
+    "addModalTitle",
+    "openTopology",
+    "hideModal",
+    "updateBackground",
+    "onSubmit",
+    "currentCommunicationStructure"
+  ],
+  dispatchers: [
+    "openTopology",
+    "showModal",
+    "hideModal",
+    "addModalTitle",
+    "addModalFooter",
+    "changeModalClass",
+    "updateBackground",
+    "dispatch"
+  ],
+  subscriptions: ["currentCommunicationStructure"]
+};
+
+export const Import = {
+  nodeName: "Import Component",
+  component: "Import",
+  description: "",
+  propTypes: [
+    "t",
+    "alertClass",
+    "alertMessage",
+    "displayAlert",
+    "title",
+    "filesToAddText",
+    "onDrop",
+    "progress",
+    "multiple",
+    "canDrop",
+    "displayDescription",
+    "select",
+    "progressBarVisible",
+    "className"
+  ],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const Alert = {
+  nodeName: "Alert Component",
+  component: "Alert",
+  description: "React-bootstrap Component",
+  propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const ProgressBar = {
+  nodeName: "ProgressBar Component",
+  component: "ProgressBar",
+  description: "React-bootstrap Component",
+  propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const Interpolate = {
+  nodeName: "Interpolate Component",
+  component: "Interpolate",
+  description: "react-i18next component",
+  propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const WrappedComponent = {
+  nodeName: "WrappedComponent Component",
+  component: "WrappedComponent",
+  description: "",
+  propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const ReactTable = {
+  nodeName: "ReactTable Component",
+  component: "ReactTable",
+  description: "Npm component",
+  propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+}
