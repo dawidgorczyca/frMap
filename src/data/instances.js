@@ -150,10 +150,10 @@ const NavigationMenuInstance = {
 const ImportInstance = {
   ...definitions.Import,
   children: [
-    ...definitions.Alert,
-    ...definitions.ProgressBar,
-    ...definitions.Interpolate,
-    ...definitions.Dropzone
+    { ...definitions.Alert },
+    { ...definitions.ProgressBar },
+    { ...definitions.Interpolate },
+    { ...definitions.Dropzone }
   ]
 };
 
@@ -496,4 +496,63 @@ const AppInstance = {
   children: [AuthorizedComponentInstance]
 };
 
-export default AppInstance;
+const CustomMenuItemInstance = {
+  ...definitions.CustomMenuItem,
+  children: [
+    { ...definitions.MenuItem }
+  ]
+}
+
+const CustomDropdownInstance = {
+  ...definitions.CustomDropdown,
+  children: [
+    { ...DropdownInstance,
+      children: [
+        ...DropdownInstance.children,
+        ...definitions.CustomToggle,
+        ...definitions.DropdownMenu
+      ]
+    }
+  ]
+}
+
+const LanguageSwitcherInstance = {
+  ...definitions.LanguageSwitcher,
+  children: [
+    CustomMenuItemInstance,
+    { ...definitions.MenuItem },
+    CustomDropdownInstance,
+    { ...definitions.DropdownButton },
+  ]
+}
+
+const LoginInstance = {
+  ...definitions.Login,
+  children: [
+    TextInputInstance,
+    TextInputInstance,
+    { ...definitions.Button },
+    LanguageSwitcherInstance
+  ]
+};
+
+const StartPageInstance = {
+  ...definitions.StartPage,
+  children: [
+    LoginInstance,
+    ...definitions.PageFooter
+  ]
+};
+
+const NotFoundPageInstance = {
+  ...definitions.NotFoundPage
+};
+
+export const BaseComponentInstance = {
+  ...definitions.BaseComponent,
+  children: [
+    AppInstance,
+    StartPageInstance,
+    NotFoundPageInstance
+  ]
+};

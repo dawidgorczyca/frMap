@@ -1361,4 +1361,131 @@ export const ReactTable = {
   propTypes: [],
   dispatchers: [],
   subscriptions: []
-}
+};
+
+export const NotFoundPage = {
+  nodeName: "NotFound Page",
+  component: "NotFoundPage",
+  description:
+    "404 Page Not Found. That component is rendered when a route is invalid.",
+  propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const BaseComponent = {
+  nodeName: "Base Component",
+  component: "BaseComponent",
+  description: "Base component of the application",
+  propTypes: ["children", "actions", "location", "logout"],
+  dispatchers: ["actions", "logout"],
+  subscriptions: ["language", "location"]
+};
+
+export const StartPage = {
+  nodeName: "Start Page",
+  component: "StartPage",
+  description: "",
+  propTypes: ["translation", "clientIp", "dispatch"],
+  dispatchers: [],
+  subscriptions: ["clientIp"]
+};
+
+export const Login = {
+  nodeName: "Login",
+  component: "Login",
+  description: "",
+  propTypes: [
+    "translation",
+    "className",
+    "changeLanguage",
+    "actions",
+    "authenticateUser"
+  ],
+  dispatchers: ["dispatch", "actions", "authenticateUser"],
+  subscriptions: ["user", "location", "currentLanguage"]
+};
+
+export const PageFooter = {
+  nodeName: "PageFooter",
+  component: "PageFooter",
+  description: "",
+  propTypes: ["label", "footerClass", "labelClass"],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const LanguageSwitcher = {
+  nodeName: "Language Switcher",
+  component: "LanguageSwitcher",
+  description: "",
+  propTypes: [
+    "translation",
+    "actions",
+    "currentLanguage",
+    "switcherControlClass",
+    "inputLabelClass",
+    "langLabelText",
+    "labelHolderClass",
+    "switcherHolderClass",
+    "handleLanguageChange",
+    "defaultStyle",
+    "dropdown"
+  ],
+  dispatchers: ["languageActions"],
+  subscriptions: ["location", "currentLanguage"]
+};
+
+export const DropdownButton = {
+  nodeName: "DropdownButton",
+  component: "DropdownButton",
+  description: "react-bootstrap component",
+  propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const MenuItem = {
+  nodeName: "MenuItem",
+  component: "MenuItem",
+  description: "react-bootstrap component",
+  propTypes: ["icon", "children", "srcFormat"],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const CustomDropdown = {
+  nodeName: "CustomDropdown",
+  component: "CustomDropdown",
+  description: "",
+  propTypes: ["title", "label", "labelClass", "toggleIconSrc", "children"],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const CustomMenuItem = {
+  nodeName: "CustomMenuItem",
+  component: "CustomMenuItem",
+  description: "",
+  propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const CustomToggle = {
+  nodeName: "CustomToggle",
+  component: "CustomToggle",
+  description: "",
+  propTypes: ["title", "onClick"],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const DropdownMenu = {
+  nodeName: "Dropdown.Menu",
+  component: "Dropdown.Menu",
+  description: "react-bootstrap component",
+  propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+};
