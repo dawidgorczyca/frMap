@@ -562,7 +562,10 @@ const TopbarInstance = {
         }
       ]
     },
-    ScanManagerInstance
+    {
+      ...definitions.Modal,
+      children: [ScanManagerInstance]
+    }
   ]
 };
 
@@ -578,7 +581,7 @@ const AppInstance = {
 
 const StartPageInstance = {
   ...definitions.StartPage,
-  children: [LoginInstance, ...definitions.PageFooter]
+  children: [LoginInstance, { ...definitions.PageFooter }]
 };
 
 const NotFoundPageInstance = {
@@ -619,5 +622,10 @@ const ModalBootstrapInstance = {
 
 export const BaseComponentInstance = {
   ...definitions.BaseComponent,
-  children: [AppInstance, StartPageInstance, NotFoundPageInstance, ModalBootstrapInstance]
+  children: [
+    AppInstance,
+    StartPageInstance,
+    NotFoundPageInstance,
+    ModalBootstrapInstance
+  ]
 };
