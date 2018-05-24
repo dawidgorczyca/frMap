@@ -1467,7 +1467,7 @@ export const CustomMenuItem = {
   nodeName: "CustomMenuItem",
   component: "CustomMenuItem",
   description: "",
-  propTypes: [],
+  propTypes: ["icon", "children", "srcFormat"],
   dispatchers: [],
   subscriptions: []
 };
@@ -1486,6 +1486,214 @@ export const DropdownMenu = {
   component: "Dropdown.Menu",
   description: "react-bootstrap component",
   propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const SettingsGeneral = {
+  nodeName: "SettingsGeneral",
+  component: "SettingsGeneral",
+  description: "",
+  propTypes: [
+    "translation",
+    "addModalTitle",
+    "changeModalClass",
+    "updateIpConfig",
+    "currentLanguage"
+  ],
+  dispatchers: [
+    "addModalTitle",
+    "addModalBody",
+    "changeModalClass",
+    "updateIpConfig",
+    "dispatch"
+  ],
+  subscriptions: ["settings", "currentLanguage"]
+};
+
+export const SettingsTopology = {
+  nodeName: "SettingsTopology",
+  component: "SettingsTopology",
+  description: "",
+  propTypes: [],
+  dispatchers: ["dispatch"],
+  subscriptions: []
+};
+
+export const SettingsAbout = {
+  nodeName: "SettingsAbout",
+  component: "SettingsAbout",
+  description: "",
+  propTypes: ["translation", "addModalTitle", "changeModalClass"],
+  dispatchers: [
+    "addModalTitle",
+    "addModalBody",
+    "changeModalClass",
+    "dispatch"
+  ],
+  subscriptions: ["language"]
+};
+
+export const SettingsFinder = {
+  nodeName: "SettingsFinder",
+  component: "SettingsFinder",
+  description: "",
+  propTypes: ["label", "value", "validation", "handleChange"],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const SettingsIpRange = {
+  nodeName: "SettingsIpRange",
+  component: "SettingsIpRange",
+  description: "",
+  propTypes: [
+    "label",
+    "validationFrom",
+    "validationTo",
+    "valueFrom",
+    "valueTo",
+    "handleChange"
+  ],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const TopologyBackground = {
+  nodeName: "TopologyBackground",
+  component: "TopologyBackground",
+  description: "",
+  propTypes: ["translation", "dispatch", "topologyId"],
+  dispatchers: [],
+  subscriptions: ["topologyId", "background", "grid"]
+};
+
+export const ReactMarkdown = {
+  nodeName: "ReactMarkdown",
+  component: "ReactMarkdown",
+  description: "React npm component",
+  propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const ManualDownloadButton = {
+  nodeName: "ManualDownloadButton",
+  component: "ManualDownloadButton",
+  description: "",
+  propTypes: ["translation", "className", "link"],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const ModalBootstrap = {
+  nodeName: "ModalBootstrap",
+  component: "ModalBootstrap",
+  description: "",
+  propTypes: [
+    "translation",
+    "modalClass",
+    "overrideModalClass",
+    "visibility",
+    "footerCloseBtn",
+    "renderedTitle",
+    "renderedBody",
+    "renderedFooter",
+    "isAlert",
+    "showAlert",
+    "alertMessage",
+    "alertSuccess",
+    "hideModal"
+  ],
+  dispatchers: [
+    "addModalTitle",
+    "addModalBody",
+    "changeModalClass",
+    "hideModal",
+    "dispatch"
+  ],
+  subscriptions: [
+    "renderedTitle",
+    "visibility",
+    "isAlert",
+    "renderedBody",
+    "renderedFooter",
+    "modalClass",
+    "footerCloseBtn",
+    "showAlert",
+    "alertMessage",
+    "alertSuccess",
+    "language"
+  ]
+};
+
+export const Modal = {
+  nodeName: "Modal",
+  component: "Modal",
+  description: "react-modal-bootstrap component",
+  propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const ModalHeader = {
+  nodeName: "ModalHeader",
+  component: "ModalHeader",
+  description: "react-modal-bootstrap component",
+  propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const ModalTitle = {
+  nodeName: "ModalTitle",
+  component: "ModalTitle",
+  description: "react-modal-bootstrap component",
+  propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const ModalBody = {
+  nodeName: "ModalBody",
+  component: "ModalBody",
+  description: "react-modal-bootstrap component",
+  propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const ModalFooter = {
+  nodeName: "ModalFooter",
+  component: "ModalFooter",
+  description: "react-modal-bootstrap component",
+  propTypes: [],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const SimpleContentAlert = {
+  nodeName: "SimpleContentAlert",
+  component: "SimpleContentAlert",
+  description: "",
+  propTypes: ["alertClass", "success", "message"],
+  dispatchers: [],
+  subscriptions: []
+};
+
+export const NotificationModal = {
+  nodeName: "SimpleContentAlert",
+  component: "SimpleContentAlert",
+  description: "",
+  propTypes: [
+    "className",
+    "btnClass",
+    "message",
+    "messageTitle",
+    "hideModal",
+    "success",
+    "isOpen"
+  ],
   dispatchers: [],
   subscriptions: []
 };

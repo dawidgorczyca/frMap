@@ -1,10 +1,5 @@
 import * as definitions from "./definitions";
 
-const SettingsInstance = {
-  ...definitions.SettingsComponent,
-  children: [{ ...definitions.MenuComponent }]
-};
-
 const WithAuthorizationInstance = {
   ...definitions.WithAuthorization,
   children: [{ ...definitions.WrappedComponent }]
@@ -103,36 +98,6 @@ const ScanManagerInstance = {
   children: [DevicesScanManagerInstance, InterfacesScanManagerInstance]
 };
 
-const TopbarInstance = {
-  ...definitions.TopbarComponent,
-  children: [
-    {
-      ...definitions.MenuComponent,
-      children: [
-        {
-          DropdownInstance,
-          children: [SettingsInstance]
-        }
-      ]
-    },
-    ScanManagerInstance,
-    {
-      ...definitions.MenuComponent,
-      children: [
-        {
-          ...definitions.MenuComponent,
-          children: [
-            {
-              DropdownInstance,
-              children: [SettingsInstance]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-};
-
 const ModalLogInstance = {
   ...definitions.ModalLog,
   children: [
@@ -164,7 +129,7 @@ const ImportTopologyFormInstance = {
 
 const ProjectConfigurator = {
   ...definitions.ProjectConfigurator,
-  children: [ImportTopologyFormInstance, {...definitions.BasicInputComponent}]
+  children: [ImportTopologyFormInstance, { ...definitions.BasicInputComponent }]
 };
 
 const SidebarInstance = {
@@ -486,27 +451,16 @@ const ContentBaseInstance = {
   ]
 };
 
-const AuthorizedComponentInstance = {
-  ...definitions.AuthorizedComponent,
-  children: [SidebarInstance, TopbarInstance, ContentBaseInstance]
-};
-
-const AppInstance = {
-  ...definitions.AppComponent,
-  children: [AuthorizedComponentInstance]
-};
-
 const CustomMenuItemInstance = {
   ...definitions.CustomMenuItem,
-  children: [
-    { ...definitions.MenuItem }
-  ]
-}
+  children: [{ ...definitions.MenuItem }]
+};
 
 const CustomDropdownInstance = {
   ...definitions.CustomDropdown,
   children: [
-    { ...DropdownInstance,
+    {
+      ...DropdownInstance,
       children: [
         ...DropdownInstance.children,
         ...definitions.CustomToggle,
@@ -514,7 +468,7 @@ const CustomDropdownInstance = {
       ]
     }
   ]
-}
+};
 
 const LanguageSwitcherInstance = {
   ...definitions.LanguageSwitcher,
@@ -522,9 +476,9 @@ const LanguageSwitcherInstance = {
     CustomMenuItemInstance,
     { ...definitions.MenuItem },
     CustomDropdownInstance,
-    { ...definitions.DropdownButton },
+    { ...definitions.DropdownButton }
   ]
-}
+};
 
 const LoginInstance = {
   ...definitions.Login,
@@ -536,23 +490,134 @@ const LoginInstance = {
   ]
 };
 
+const SettingsFinderInstance = {
+  ...definitions.SettingsFinder,
+  children: [{ ...definitions.BasicInputComponent }]
+};
+
+const SettingsIpRangeInstance = {
+  ...definitions.SettingsIpRange,
+  children: [
+    { ...definitions.BasicInputComponent },
+    { ...definitions.BasicInputComponent }
+  ]
+};
+
+const SettingsGeneralInstance = {
+  ...definitions.SettingsGeneral,
+  children: [
+    SettingsIpRangeInstance,
+    SettingsFinderInstance,
+    LanguageSwitcherInstance
+  ]
+};
+
+const TopologyBackgroundInstance = {
+  ...definitions.TopologyBackground,
+  children: [{ ...definitions.Dropzone }]
+};
+
+const SettingsTopologyInstance = {
+  ...definitions.SettingsTopology,
+  children: [TopologyBackgroundInstance]
+};
+
+const ManualDownloadButton = {
+  ...definitions.ManualDownloadButton,
+  children: [
+    {
+      ...definitions.DropdownButton,
+      children: [{ ...definitions.MenuItem }, { ...definitions.MenuItem }]
+    }
+  ]
+};
+
+const SettingsAboutInstance = {
+  ...definitions.SettingsAbout,
+  children: [ManualDownloadButton, { ...definitions.ReactMarkdown }]
+};
+
+const SettingsInstance = {
+  ...definitions.SettingsComponent,
+  children: [
+    { ...definitions.MenuComponent },
+    SettingsGeneralInstance,
+    SettingsTopologyInstance,
+    SettingsAboutInstance
+  ]
+};
+
+const TopbarInstance = {
+  ...definitions.TopbarComponent,
+  children: [
+    {
+      ...definitions.MenuComponent
+    },
+    {
+      ...definitions.MenuComponent,
+      children: [
+        {
+          DropdownInstance,
+          children: [SettingsInstance]
+        }
+      ]
+    },
+    ScanManagerInstance
+  ]
+};
+
+const AuthorizedComponentInstance = {
+  ...definitions.AuthorizedComponent,
+  children: [SidebarInstance, TopbarInstance, ContentBaseInstance]
+};
+
+const AppInstance = {
+  ...definitions.AppComponent,
+  children: [AuthorizedComponentInstance]
+};
+
 const StartPageInstance = {
   ...definitions.StartPage,
-  children: [
-    LoginInstance,
-    ...definitions.PageFooter
-  ]
+  children: [LoginInstance, ...definitions.PageFooter]
 };
 
 const NotFoundPageInstance = {
   ...definitions.NotFoundPage
 };
 
+const ModalBootstrapInstance = {
+  ...definitions.ModalBootstrap,
+  children: [
+    {
+      ...definitions.Modal,
+      children: [
+        { ...definitions.SimpleContentAlert },
+        {
+          ...definitions.ModalHeader,
+          children: [{ ...definitions.ModalTitle }]
+        },
+        { ...definitions.ModalBody },
+        { ...definitions.ModalFooter, children: [{ ...definitions.Button }] }
+      ]
+    },
+    {
+      ...definitions.NotificationModal,
+      children: [
+        {
+          ...definitions.Modal,
+          children: [
+            {
+              ...definitions.ModalBody,
+              children: [{ ...definitions.Button }]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};
+
 export const BaseComponentInstance = {
   ...definitions.BaseComponent,
-  children: [
-    AppInstance,
-    StartPageInstance,
-    NotFoundPageInstance
-  ]
+  children: [AppInstance, StartPageInstance, NotFoundPageInstance, ModalBootstrapInstance]
 };
